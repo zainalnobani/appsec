@@ -98,7 +98,57 @@ After cleaning unused dependencies, the scan reported:
 
 This confirms the integrity and security of all included packages as of the scan date.
 
- Usage
+##  CodeQL Scanning
+
+We have integrated GitHub’s CodeQL scanning to perform advanced static analysis across our Node.js application source code, aiming to identify security vulnerabilities, logic flaws, and code quality issues before deployment.
+
+###  What is CodeQL?
+
+CodeQL is GitHub's semantic analysis engine that treats code as data. It allows developers to write queries that identify patterns of insecure or poor-quality code by analyzing data flows and control structures within the codebase.
+
+###  What CodeQL Does
+
+1. **Build Phase**
+   - Compiles the code into a CodeQL database.
+   - Maps functions, variables, control flow, and object relationships.
+
+2. **Analysis Phase**
+   - Executes security queries to detect:
+     - Insecure deserialization
+     - Injection risks
+     - Hardcoded secrets
+     - Broken access control
+     - Unvalidated input
+
+3. **Reporting Phase**
+   - Outputs results in GitHub Security > Code Scanning Alerts.
+   - Includes severity level, file location, description, and suggested fix.
+
+###  Why We Use It
+
+| Feature                   | Benefit                                             |
+|--------------------------|-----------------------------------------------------|
+|  Deep Code Insight      | Tracks how untrusted data flows in your app         |
+|  Secure by Default      | Detects known insecure coding patterns               |
+|  CI/CD Integration      | Runs automatically on push, pull request, and cron  |
+|  Custom Queries         | Allows writing our own vulnerability checks         |
+
+###  Setup Summary
+
+- `codeql.yml` configured under `.github/workflows/`
+- Language: `javascript-typescript`
+- Build mode: `none`
+- Scan triggers:
+  - On push to `main`
+  - On pull request
+  - Weekly scheduled cron scan
+
+###  Scan Result
+
+ CodeQL successfully scanned our application with **no critical vulnerabilities found**.  
+The system passed our internal quality and security benchmarks.
+
+## Usage
 Clone the repository.
 
 Run:
