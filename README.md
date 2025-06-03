@@ -89,6 +89,14 @@ This project is a secure web application built using **Node.js**, **Express**, a
 | **Rate Limiting**     | Prevents brute-force login attempts           |
 
 ---
+###  Security Scanning Result
+
+We used **Snyk CLI** to perform a vulnerability scan on our Node.js + MongoDB application.  
+After cleaning unused dependencies, the scan reported:
+
+>  104 dependencies tested — **No known vulnerabilities or risky paths** detected.
+
+This confirms the integrity and security of all included packages as of the scan date.
 
  Usage
 Clone the repository.
